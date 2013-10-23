@@ -3,81 +3,81 @@
   "version": "1.0.0",
   "dependencies": {
     "express": {
-      "version": "3.0.0rc3",
+      "version": "*",
       "dependencies": {
         "connect": {
-          "version": "2.4.3",
+          "version": "*",
           "dependencies": {
             "qs": {
-              "version": "0.4.2"
+              "version": "*"
             },
             "formidable": {
-              "version": "1.0.11"
+              "version": "*"
             },
             "bytes": {
-              "version": "0.1.0"
+              "version": "*"
             },
             "pause": {
-              "version": "0.0.1"
+              "version": "*"
             }
           }
         },
         "commander": {
-          "version": "0.6.1"
+          "version": "*"
         },
         "range-parser": {
-          "version": "0.0.4"
+          "version": "*"
         },
         "mkdirp": {
-          "version": "0.3.3"
+          "version": "*"
         },
         "cookie": {
-          "version": "0.0.4"
+          "version": "*"
         },
         "crc": {
-          "version": "0.2.0"
+          "version": "*"
         },
         "fresh": {
-          "version": "0.1.0"
+          "version": "*"
         },
         "methods": {
-          "version": "0.0.1"
+          "version": "*"
         },
         "send": {
-          "version": "0.0.3",
+          "version": "*",
           "dependencies": {
             "mime": {
-              "version": "1.2.6"
+              "version": "*"
             }
           }
         },
         "debug": {
-          "version": "0.7.0"
+          "version": "*"
         }
       }
     },
     "ejs": {
-      "version": "0.8.2"
+      "version": "*"
     },
     "express-partials": {
-      "version": "0.0.5"
+      "version": "*"
     },
     "http-proxy": {
-      "version": "0.8.2",
+      "version": "*",
       "dependencies": {
         "colors": {
-          "version": "0.6.0-1"
+          "version": "*"
         },
         "optimist": {
-          "version": "0.3.4",
+          "version": "*",
           "dependencies": {
             "wordwrap": {
-              "version": "0.0.2"
+              "version": "*"
             }
           }
         },
         "pkginfo": {
-          "version": "0.2.3"
+          "version": "*"
         }
       }
     }

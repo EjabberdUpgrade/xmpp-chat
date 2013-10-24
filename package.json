@@ -1,19 +1,18 @@
 {
-    "name": "xmpp-bosh-interface-proxy"
-  , "description": "A node application that demo user sign up, sign in and making xmpp chat conversation"
-  , "version": "1.0.0"
-  , "dependencies": {
-        "express": "3.4.2"
-      , "ejs": "0.8.4"
-      , "backbone"
-      , "express-partials": "0.1.1"
-      , "http-proxy": "0.10.3"
-      , "restify": "2.6.0"
-      , "twitter-bootstrap": "2.1.1"
-      , "angular": "0.0.4"
-      , "log4js": "0.6.9" 
-      , "log4js-amqp": "0.0.1"	
-      , "d3": "3.3.8"
-      ,	
+    "name": "xmpp-bosh-interface-proxy", 
+    "description": "A node application that demo user sign up etc",
+     "version": "1.0.0",
+     "dependencies": {
+        "express": "3.4.2",
+        "ejs": "0.8.4",
+        "backbone": "1.1.0",
+        "express-partials": "0.1.1",
+        "http-proxy": "0.10.3",
+        "restify": "2.6.0",
+        "twitter-bootstrap": "2.1.1",
+        "angular": "0.0.4",
+        "log4js": "0.6.9",
+        "log4js-amqp": "0.0.1",	
+        "d3": "3.3.8"   
     }
 }

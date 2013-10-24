@@ -1,4 +1,4 @@
-Chat.Controllers.Application = Ember.Object.extend({
+;Chat.Controllers.Application = Ember.Object.extend({
     debug: false,
 
     connect: function (options) {

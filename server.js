@@ -7,7 +7,7 @@ var util = require('util')
     , httpProxy = require('http-proxy')
     , log4js = require('log4js')
     , restify = require('restify')
-    , config = require('./config'),
+    , config = require('./config')
     , fs = require('fs');
 
 var app = express(),
@@ -21,7 +21,7 @@ var app = express(),
 
 app.configure(function() {
     app.use(express.favicon());
-    app.use(express.logger('dev');
+    app.use(express.logger('dev'));
     app.use(express.static(__dirname));
     app.use(partials());
     app.use(express.bodyParser());

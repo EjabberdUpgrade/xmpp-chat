@@ -7,6 +7,7 @@ var util = require('util')
     , httpProxy = require('http-proxy')
     , log4js = require('log4js')
     , restify = require('restify')
+    , config = require('./config'),
     , fs = require('fs');
 
 var app = express(),

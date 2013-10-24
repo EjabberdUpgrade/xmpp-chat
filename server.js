@@ -1,12 +1,16 @@
-// Basic server to serve static assets from /public folder
+;// Basic server to serve static assets from /public folder
 // with a proxy for XMPP server BOSH interface
 
-var util = require('util'),
-    express = require('express'),
-    partials = require('express-partials'),
-    httpProxy = require('http-proxy');
+var util = require('util')
+    , express = require('express')
+    , partials = require('express-partials')
+    , httpProxy = require('http-proxy')
+    , log4js = require('log4js')
+    , restify = require('restify')
+    , fs = require('fs');
 
 var app = express(),
+    
     proxy = new httpProxy.HttpProxy({
         target: {
             host: 'localhost',
@@ -60,6 +64,16 @@ app.get('/sign_out', function (req, res) {
     delete req.session.user;
     res.redirect('/sign_in');
 });
+
+
+app.get('/test', function (req, res) {
+    if (req.session.user) {
+        res.redirect('/');
+    } else {
+        res.render('unit_test');
+    }
+});
+
 
 // Proxy BOSH request to XMPP server
 app.all('/http-bind', function(req, res) {

@@ -1,44 +1,60 @@
 ;
-module.exports = {
-   environment: "dev",
-   ejabberd: {
-	host: "chat64.ejabberddev.localdomain",
-	port: 5280
-   },
-   sparkApi: {
-        spark_api_endpoint: "http://api.stgv3.spark.net/v2",
-        spark_app_id: "1054",
-        spark_brand_id: "90510",
-        spark_client_secret: "nZGVVfj8dfaBPKsx_dmcRXQml8o5N-iivf5lBkrAmLQ1",
-        spark_create_oauth_accesstoken: "/brandId/{brandId}/oauth2/accesstoken/application/{applicationId}",
-        auth_profile_miniProfile: "/brandId/{brandId}/profile/attributeset/miniProfile/{targetMemberId}",
-        profile_memberstatus: "/brandId/{brandId}/application/{applicationId}/member/{memberId}/status"
-    },
-    community2brandI: [
-        {
-            name: "spark",
-            communityId: "1",
-            brandId: "1001"
-        },
-        {
-            name: "jdate",
-            communityId: "3",
-            brandId: "1003"
-        },
-        {
-            name: "cupid",
-            communityId: "10",
-            brandId: "1015"
-        },
-        {
-            name: "bbw",
-            communityId: "23",
-            brandId: "90410"
-        },
-        {
-            name: "blacksingle",
-            communityId: "24",
-            brandId: "90510"
-        }
-    ]
-};
+(function (environment) {
+  var fs;
+  try {
+     fs = require("graceful-fs");
+  } catch (error) {
+     fs = require("fs")
+  };
+  try {
+    var configSource = {};
+    var config = {};
+    var config_file = '';
+    console.log("Current dir:" + __dirname);
+    switch(process.env.Environment)
+    {
+	case "dev":
+		config_file = "dev_config.json"; break;
+	case "stage":
+		config_file = "stage_config.json"; break;
+	case "preprod":
+		config_file = "preprod_config.json"; break;
+	case "prod":
+		config_file = "prod_config.json"; break;
+	default:
+		throw new "Unknown environment value!!!!!!!!!!!!!!!!";
+
+    };     
+    console.log("Reading "+ config_file);
+    configSource = path.join(__dirname, config_file);
+    console.log("Found config file at "+ configSource);
+    config = ALCE.parse(confSource, {meta: true});
+  } catch (err) {
+     var errorMsg = "Error reading config. Environment: " + process.env.Environment;
+     console.log(errorMsg);
+     throw new Error(errorMsg)
+  };
+  var Constructor = (function(configVal) {
+	this.ejab_config = (function(error, configJson) {
+    		if(error) {
+      			console.log("Error reading config %d", error);		
+      			throw new Error("config read error abort!")	
+    		};    
+    		var Host =  configJson.get('ejabberd').get('host');
+    		var Port =  configJson.get('ejabberd').get('port');
+    		return JSON.stringify({ target: {
+			host: Host,
+			port: Port}})
+		})(configVal);
+  	this.log_config = (function(error, configJson) {
+		if(error) {
+		     console.log("Error reading config %d", error);		
+		     throw new Error("config read error abort!")	
+		};
+		log4jConf = configJson.get('log4j');
+		log4js.configure(JSON.stringify(log4jConf))
+                })(configVal);	
+  return new Constructor(config);})(config);
+})();
+
+

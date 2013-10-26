@@ -1,5 +1,6 @@
 ;// Basic server to serve static assets from /public folder
 // with a proxy for XMPP server BOSH interface
+'use strict';
 
 var util = require('util')
     , express = require('express')
@@ -7,15 +8,45 @@ var util = require('util')
     , httpProxy = require('http-proxy')
     , log4js = require('log4js')
     , restify = require('restify')
-    , config = require('./config')
+    , ALCE = require('alce')
     , fs = require('fs');
 
-var app = express(),
-    
+
+var confSource = path.join(__dirname, 'config.json');
+    config = ALCE.parse(confSource, {meta: true});	
+
+var log4jConfig = function(error, configJson) {
+    if(error) {
+      log.error("Error reading config %d", error);		
+      throw new Error("config read error abort!")	
+    };
+    log4jConf = configJson.get('log4j');
+    log4js.configure(
+	JSON.stringify(log4jConf));
+
+var log4js = require('/log4js')
+    , log =  log4js.getLogger("	xmpp-chat");
+
+var ejabConfig = function(error, configJson) {
+    if(error) {
+      log.error("Error reading config %d", error);		
+      throw new Error("config read error abort!")	
+    };    
+    var Host =  configJson.get('ejabberd').get('host');
+    var Port =  configJson.get('ejabberd').get('port');
+    JSON.stringify({ target: {
+	host: Host,
+	port: Port
+   }});
+
+};
+
+var app = express(), 
+    ejabberd =  ejabConfig(),
     proxy = new httpProxy.HttpProxy({
         target: {
-            host: 'localhost',
-            port: 5280          // Port of XMPP server
+            host: ,
+            port:           // Port of XMPP server
         }
     });
 

@@ -8,22 +8,25 @@ var util = require('util')
     , httpProxy = require('http-proxy')
     , log4js = require('log4js')
     , restify = require('restify')
-    , ALCE = require('alce')
     , fs = require('fs');
 
-var Environment = production.ENV.NODE_ENV;
+var Environment = process.env.NODE_ENV;
 util.puts('Node production environment: ' + Environment);
 if(Environment === 'undefined') throw new Error('Node_Env must be set');
 
-var Config = require('./priv'),
-    conf = new Config();
+var Workspace = require('./config/spark_config');
+this.Workspace = new Workspace();
+
+
+console.log('Current config values: ' + Config);
+
 
 var app = express(), 
     ejabberd =  ejabConfig(),
     proxy = new httpProxy.HttpProxy({
         target: {
-            host: ,
-            port:           // Port of XMPP server
+            host: process.env.EjabHost ,
+            port: process.env.EjabPort          // Port of XMPP server
         }
     });
 
@@ -39,7 +42,7 @@ app.configure(function() {
 
 app.set('view engine', 'ejs');
 
-app.configure("development", function () {
+app.configure(Environment, function () {
     app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
 });
 
@@ -74,6 +77,11 @@ app.post('/sign_in', function (req, res) {
 app.get('/sign_out', function (req, res) {
     delete req.session.user;
     res.redirect('/sign_in');
+});
+
+app.get('/sign_up', function (req, res) {
+    delete req.session.user;
+    res.redirect('/sign_up');
 });
 
 

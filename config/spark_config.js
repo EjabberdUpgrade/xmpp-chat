@@ -1,5 +1,5 @@
 ;
-(function (environment) {
+var Workspace = module.exports = function() {
   var fs = {};
   var Env = process.env.Environment || 'undefined';
   var ejabConfig = 
@@ -32,11 +32,9 @@
              {spark_client_secret: 'undefined'},
              {spark_create_oauth_accesstoken: '/brandId/{brandId}/oauth2/accesstoken/application/{applicationId}'},
              {auth_profile_miniProfile: '/brandId/{brandId}/profile/attributeset/miniProfile/{targetMemberId}'},
-             {profile_memberstatus: '/brandId/{brandId}/application/{applicationId}/member/{memberId}/status'}
-	  ]
-	};
-   var community2brandId =
-	{"communityBrandIdMap": [
+             {profile_memberstatus: '/brandId/{brandId}/application/{applicationId}/member/{memberId}/status'},
+	  
+             {"communityBrandIdMap": [
 	        {
 	            name: 'spark',
 	            communityId: '1',
@@ -62,9 +60,10 @@
 	            communityId: '24',
 	            brandId: '90510'
 	        }
-	   ]
-	};  
-
+	     ]
+           }
+	] 
+  };
   try {
      fs = require('graceful-fs');
   } catch (error) {
@@ -74,7 +73,7 @@
     var configSource = {};
     var config = {};
     var config_file = '';
-    console.log('Current dir:' + __dirname);
+    console.log('Configuration file is reading from dir:' + __dirname);
     switch(Env)
     {
 	case 'dev':
@@ -124,27 +123,12 @@
      console.log(errorMsg);
      throw new Error(errorMsg)
   };
-  var Constructor = (function() {
-	this.ejab_config = (function(error, configJson) {
-    		if(error) {
-      			console.log('Error reading config %d', error);		
-      			throw new Error('config read error abort!')	
-    		};    
-    		var Host =  configJson.get('ejabberd').get('host');
-    		var Port =  configJson.get('ejabberd').get('port');
-    		return JSON.stringify({ target: {
-			host: Host,
-			port: Port}})
-		})(configVal);
-  	this.log_config = (function(error, configJson) {
-		if(error) {
-		     console.log('Error reading config %d', error);		
-		     throw new Error('config read error abort!')	
-		};
-		log4jConf = configJson.get('log4j');
-		log4js.configure(JSON.stringify(log4jConf))
-                })();	
-  return new Constructor();})();
-})();
+  log4js.configure(log4jConfig);
+  process.env.EjabHost = ejabConfig.host;
+  process.env.EjabPort = ejabConfig.port;
+  return JSON.stringify(sparkApi);  
+};
 
-
+(function() {
+   this.parseConfig = function(){};
+}).call(Workspace.prototype);

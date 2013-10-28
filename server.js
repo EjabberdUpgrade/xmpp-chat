@@ -18,7 +18,7 @@ var Workspace = require('./config/spark_config');
 this.Workspace = new Workspace();
 
 
-console.log('Current config values: ' + Config);
+console.log('Current config values: ' + this.Workspace);
 
 
 var app = express(), 

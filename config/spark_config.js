@@ -1,7 +1,7 @@
 ;
 var Workspace = module.exports = function() {
   var fs = {};
-  var Env = process.env.Environment || 'undefined';
+  var Env = process.env.NODE_ENV || 'undefined';
   var ejabConfig = 
 	{ "ejabConfig": [  
 	  {host: 'undefined'},
@@ -24,8 +24,24 @@ var Workspace = module.exports = function() {
       	     }]
   	};
  
-  var sparkApi = 
-	{ "sparkApi": [ 
+  var sparkApi = {
+	
+	 "log4j": [
+		{"appenders": [
+      	     	   {
+          	     type: "console",
+                     category: "console"
+                   },
+                   {
+          	     "type": "file",
+         	     "filename": "tmp-test.log",
+          	     "maxLogSize": 1024,
+            	     "backups": 3,
+          	     "category": "test"
+      	           }]
+          }],
+          
+	 "sparkApi": [ 
 	     {spark_api_endpoint: 'undefined'},
              {spark_app_id: 'undefined'},
              {spark_brand_id: 'undefined'},
@@ -119,11 +135,11 @@ var Workspace = module.exports = function() {
     console.log(Env + ': BrandId: ' + sparkApi.spark_brand_id);
     console.log(Env + ': Client Secret:' +sparkApi.spark_client_secret);
   } catch (error) {
-     var errorMsg = 'Error reading config. Environment: ' + process.env.Environment;
+     var errorMsg = 'Error reading config. Environment: ' + process.env.NODE_ENV;
      console.log(errorMsg);
      throw new Error(errorMsg)
   };
-  log4js.configure(log4jConfig);
+
   process.env.EjabHost = ejabConfig.host;
   process.env.EjabPort = ejabConfig.port;
   return JSON.stringify(sparkApi);  

@@ -13,7 +13,7 @@
         auth_profile_miniProfile: "/brandId/{brandId}/profile/attributeset/miniProfile/{targetMemberId}",
         profile_memberstatus: "/brandId/{brandId}/application/{applicationId}/member/{memberId}/status"
     },
-    community2brandI: [
+    community2brandId: [
         {
             name: "spark",
             communityId: "1",

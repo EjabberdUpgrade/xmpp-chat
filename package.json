@@ -7,8 +7,12 @@
 	"priv": "priv"
     },
     "scripts": {
-	
-
+	"start-dev": "NODE_ENV=dev DEBUG=debug node DEBUG server.js",
+	"start-stage": "node",
+	"start-prepod": "node",
+	"start-prod": "node",
+	"debug": "",
+	"test": "mocha"
 
     },
     "keywords": [

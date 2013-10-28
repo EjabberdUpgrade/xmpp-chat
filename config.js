@@ -29,7 +29,7 @@
     configSource = path.join(__dirname, config_file);
     console.log("Found config file at "+ configSource);
     config = ALCE.parse(confSource, {meta: true});
-  } catch (err) {
+  } catch (error) {
      var errorMsg = "Error reading config. Environment: " + process.env.Environment;
      console.log(errorMsg);
      throw new Error(errorMsg)

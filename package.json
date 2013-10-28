@@ -1,5 +1,22 @@
 {
     "name": "xmpp-bosh-interface-proxy", 
+    "version": "0.0.1",
+    "main": "server.js",
+    "directories": {
+	"test": "test",
+	"priv": "priv"
+    },
+    "scripts": {
+	
+
+
+    },
+    "keywords": [
+        "xmpp", 
+	"angularjs",
+	 "d3",
+	 "bootstrap"
+    ],    
     "description": "A node application that demo user sign up etc",
      "version": "1.0.0",
      "dependencies": {
@@ -13,6 +30,10 @@
         "angular": "0.0.4",
         "log4js": "0.6.9",
         "log4js-amqp": "0.0.1",	
-        "d3": "3.3.8"   
+        "d3": "3.3.8",
+	"chai": "1.8.1",
+	"sinon": "0.6.4" ,
+	"supervisor": "0.5.6",
+	"reload": "0.1.0"  
     }
 }

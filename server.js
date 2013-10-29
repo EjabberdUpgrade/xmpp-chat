@@ -15,10 +15,10 @@ util.puts('Node production environment: ' + Environment);
 if(Environment === 'undefined') throw new Error('Node_Env must be set');
 
 var Workspace = require('./config/spark_config');
-this.Workspace = new Workspace();
+this.workspace = new Workspace();
 
 
-console.log('Current config values: ' + this.Workspace);
+console.log("Current config values: %j " + util.inspect(this.workspace));
 
 
 var app = express(), 

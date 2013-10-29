@@ -26,7 +26,7 @@ var Workspace = module.exports = function() {
  
   var sparkApi = {
 	
-	 "log4j": [
+	 log4j: [
 		{"appenders": [
       	     	   {
           	     type: "console",
@@ -41,7 +41,7 @@ var Workspace = module.exports = function() {
       	           }]
           }],
           
-	 "sparkApi": [ 
+	 restApi: [ 
 	     {spark_api_endpoint: 'undefined'},
              {spark_app_id: 'undefined'},
              {spark_brand_id: 'undefined'},
@@ -50,7 +50,7 @@ var Workspace = module.exports = function() {
              {auth_profile_miniProfile: '/brandId/{brandId}/profile/attributeset/miniProfile/{targetMemberId}'},
              {profile_memberstatus: '/brandId/{brandId}/application/{applicationId}/member/{memberId}/status'},
 	  
-             {"communityBrandIdMap": [
+             {communityBrandIdMap: [
 	        {
 	            name: 'spark',
 	            communityId: '1',
@@ -86,9 +86,7 @@ var Workspace = module.exports = function() {
      fs = require('fs')
   };
   try {
-    var configSource = {};
-    var config = {};
-    var config_file = '';
+
     console.log('Configuration file is reading from dir:' + __dirname);
     switch(Env)
     {
@@ -142,9 +140,10 @@ var Workspace = module.exports = function() {
 
   process.env.EjabHost = ejabConfig.host;
   process.env.EjabPort = ejabConfig.port;
-  return JSON.stringify(sparkApi);  
+  //return JSON.stringify(sparkApi);  
+  return sparkApi;  
 };
 
 (function() {
-   this.parseConfig = function(){};
+   this.init = function(){};
 }).call(Workspace.prototype);

@@ -7,12 +7,9 @@
 	"priv": "priv"
     },
     "scripts": {
-	"start-dev": "NODE_ENV=dev DEBUG=debug node DEBUG server.js",
-	"start-stage": "node",
-	"start-prepod": "node",
-	"start-prod": "node",
+	"start": "NODE_ENV=dev HTTP_PORT=8080 DEBUG=debug ./node_modules/.bin/supervisor DEBUG server.js",
 	"debug": "",
-	"test": "mocha"
+	"test": "./node_modules/.bin/mocha -u tdd -w"
 
     },
     "keywords": [

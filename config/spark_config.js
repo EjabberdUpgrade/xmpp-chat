@@ -1,4 +1,6 @@
 ;
+'use strict';
+var util = require('util');
 var Workspace = module.exports = function() {
   var fs = {};
   var Env = process.env.NODE_ENV || 'undefined';
@@ -87,7 +89,7 @@ var Workspace = module.exports = function() {
   };
   try {
 
-    console.log('Configuration file is reading from dir:' + __dirname);
+    util.puts('Configuration file is reading from dir:' + __dirname);
     switch(Env)
     {
 	case 'dev':
@@ -126,15 +128,15 @@ var Workspace = module.exports = function() {
 	default:
 		throw new 'Unknown environment value!!!!!!!!!!!!!!!!';
     };     
-    console.log(Env + ': Ejabberd Host: ' + ejabConfig.host);
-    console.log(Env + ': Ejabberd Port: ' + ejabConfig.port);
-    console.log(Env + ': Api Endpoint: ' + sparkApi.spark_api_endpoint);
-    console.log(Env + ': AppId: ' + sparkApi.spark_app_id);
-    console.log(Env + ': BrandId: ' + sparkApi.spark_brand_id);
-    console.log(Env + ': Client Secret:' +sparkApi.spark_client_secret);
+    util.puts(Env + ': Ejabberd Host: ' + ejabConfig.host);
+    util.puts(Env + ': Ejabberd Port: ' + ejabConfig.port);
+    util.puts(Env + ': Api Endpoint: ' + sparkApi.spark_api_endpoint);
+    util.puts(Env + ': AppId: ' + sparkApi.spark_app_id);
+    util.puts(Env + ': BrandId: ' + sparkApi.spark_brand_id);
+    util.puts(Env + ': Client Secret:' +sparkApi.spark_client_secret);
   } catch (error) {
      var errorMsg = 'Error reading config. Environment: ' + process.env.NODE_ENV;
-     console.log(errorMsg);
+     util.puts(errorMsg);
      throw new Error(errorMsg)
   };
 

@@ -1,3 +1,15 @@
+logs: 
+	mkdir logs
+ 
+setup: logs
+	npm install
+
+start: logs
+	NODE_ENV=dev HTTP_PORT=8080 DEBUG=debug ./node_modules/.bin/supervisor DEBUG server.js
+
+stop:
+	./node_modules/.bin/supervisor stop server.js
+
 test:
 	@find test/*.js | xargs -n 1 -t nodeunit
 

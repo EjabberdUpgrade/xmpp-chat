@@ -7,10 +7,10 @@
 	"priv": "priv"
     },
     "scripts": {
-	"start": "NODE_ENV=dev HTTP_PORT=8080 DEBUG=debug ./node_modules/.bin/supervisor DEBUG server.js",
+	"start": "make start",
 	"debug": "",
-	"test": "./node_modules/.bin/mocha -u tdd -w"
-
+	"test": "make test",
+    "stop": "make stop"
     },
     "keywords": [
         "xmpp", 

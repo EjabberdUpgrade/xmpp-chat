@@ -10,8 +10,9 @@ var util = require('util')
     , restify = require('restify')
     , fs = require('fs');
 
-var Environment = process.env.NODE_ENV;
-util.puts('Node production environment: ' + Environment);
+const Environment = process.env.NODE_ENV;
+const HttpPort = process.env.HTTP_PORT;
+util.puts('Node Environment: ' + Environment + ' HttpPort: ' + HttpPort);
 if(Environment === 'undefined') throw new Error('Node_Env must be set');
 
 var Workspace = require('./config/spark_config');
@@ -22,7 +23,6 @@ console.log("Current config values: %j " + util.inspect(this.workspace));
 
 
 var app = express(), 
-    ejabberd =  ejabConfig(),
     proxy = new httpProxy.HttpProxy({
         target: {
             host: process.env.EjabHost ,
@@ -32,7 +32,7 @@ var app = express(),
 
 app.configure(function() {
     app.use(express.favicon());
-    app.use(express.logger('dev'));
+    app.use(express.logger(Environment));
     app.use(express.static(__dirname));
     app.use(partials());
     app.use(express.bodyParser());
@@ -101,5 +101,5 @@ app.all('/http-bind', function(req, res) {
     proxy.proxyRequest(req, res);
 });
 
-app.listen(9677); // XMPP
-util.puts("Server running at http://0.0.0.0:9677/ in " + app.set("env") + " mode.");
+app.listen(HttpPort); // XMPP
+util.puts("Server running at http://0.0.0.0:" + HttpPort + "/ in " + app.set("env") + " mode.");

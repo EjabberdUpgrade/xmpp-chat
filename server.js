@@ -10,8 +10,10 @@ var util = require('util')
     , restify = require('restify')
     , fs = require('fs');
 
-const Environment = process.env.NODE_ENV;
-const HttpPort = process.env.HTTP_PORT;
+const Environment = process.env.NODE_ENV || undefined;
+const HttpPort = process.env.HTTP_PORT || undefined;
+const EjabHost = process.env.EJAB_HOST || undefined;
+const EjabPort = process.env.EJAB_PORT || undefined; 
 util.puts('Node Environment: ' + Environment + ' HttpPort: ' + HttpPort);
 if(Environment === 'undefined') throw new Error('Node_Env must be set');
 
@@ -25,8 +27,8 @@ util.puts("Current config values: %j " + util.inspect(this.workspace));
 var app = express(), 
     proxy = new httpProxy.HttpProxy({
         target: {
-            host: process.env.EjabHost ,
-            port: process.env.EjabPort          // Port of XMPP server
+            host: EjabHost,
+            port: EjabPort          // Port of XMPP server
         }
     });
 

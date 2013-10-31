@@ -1,0 +1,29 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/bin/node', '/usr/bin/npm', 'start' ]
+2 info using npm@1.2.18
+3 info using node@v0.10.5
+4 verbose read json /opt/xmpp-chat/package.json
+5 verbose run-script [ 'prestart', 'start', 'poststart' ]
+6 info prestart xmpp-bosh-interface-proxy@1.0.0
+7 info start xmpp-bosh-interface-proxy@1.0.0
+8 verbose unsafe-perm in lifecycle true
+9 silly exec sh "-c" "make start"
+10 silly sh,-c,make start,/opt/xmpp-chat spawning
+11 info xmpp-bosh-interface-proxy@1.0.0 Failed to exec start script
+12 error xmpp-bosh-interface-proxy@1.0.0 start: `make start`
+12 error `sh "-c" "make start"` failed with 2
+13 error Failed at the xmpp-bosh-interface-proxy@1.0.0 start script.
+13 error This is most likely a problem with the xmpp-bosh-interface-proxy package,
+13 error not with npm itself.
+13 error Tell the author that this fails on your system:
+13 error     make start
+13 error You can get their info via:
+13 error     npm owner ls xmpp-bosh-interface-proxy
+13 error There is likely additional logging output above.
+14 error System Linux 2.6.32-358.23.2.el6.x86_64
+15 error command "/usr/bin/node" "/usr/bin/npm" "start"
+16 error cwd /opt/xmpp-chat
+17 error node -v v0.10.5
+18 error npm -v 1.2.18
+19 error code ELIFECYCLE
+20 verbose exit [ 1, true ]

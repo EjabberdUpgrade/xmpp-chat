@@ -23,14 +23,16 @@ this.workspace = new Workspace();
 
 util.puts("Current config values: %j " + util.inspect(this.workspace));
 
-
 var app = express(), 
-    proxy = new httpProxy.HttpProxy({
+    options = {
+        hostnameOnly: true,
         target: {
-            host: EjabHost,
-            port: EjabPort          // Port of XMPP server
+            host: 'chat64.ejabberddev.localdomain',
+            port: EjabPort
+
         }
-    });
+    },
+    proxy = new httpProxy.HttpProxy(options);
 
 app.configure(function() {
     app.use(express.favicon());

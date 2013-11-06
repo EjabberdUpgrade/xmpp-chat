@@ -1,41 +1,51 @@
 {
-    "name": "xmpp-bosh-interface-proxy", 
-    "version": "0.0.1",
-    "main": "server.js",
-    "directories": {
-	"test": "test",
-	"priv": "priv"
-    },
-    "scripts": {
-	"start": "make start",
-	"debug": "",
-	"test": "make test",
+  "name": "xmpp-bosh-interface-proxy",
+  "version": "1.0.0",
+  "main": "server.js",
+  "directories": {
+    "test": "test",
+    "priv": "priv"
+  },
+  "scripts": {
+    "start": "make start",
+    "debug": "",
+    "test": "make test",
     "stop": "make stop"
-    },
-    "keywords": [
-        "xmpp", 
-	"angularjs",
-	 "d3",
-	 "bootstrap"
-    ],    
-    "description": "A node application that demo user sign up etc",
-     "version": "1.0.0",
-     "dependencies": {
-        "express": "3.4.2",
-        "ejs": "0.8.4",
-        "backbone": "1.1.0",
-        "express-partials": "0.1.1",
-        "http-proxy": "0.10.3",
-        "restify": "2.6.0",
-        "twitter-bootstrap": "2.1.1",
-        "angular": "0.0.4",
-        "log4js": "0.6.9",
-        "log4js-amqp": "0.0.1",	
-        "d3": "3.3.8",
-	    "chai": "1.8.1",
-	    "sinon": "0.6.4" ,
-	    "supervisor": "0.5.6",
-	    "reload": "0.1.0"
-
-    }
+  },
+  "keywords": [
+    "xmpp",
+    "angularjs",
+    "d3",
+    "bootstrap"
+  ],
+  "description": "A node application that demo user sign up etc",
+  "dependencies": {
+    "express": "3.4.2",
+    "ejs": "0.8.4",
+    "backbone": "1.1.0",
+    "express-partials": "0.1.1",
+    "http-proxy": "0.10.3",
+    "restify": "2.6.0",
+    "twitter-bootstrap": "2.1.1",
+    "angular": "0.0.4",
+    "log4js": "0.6.9",
+    "log4js-amqp": "0.0.1",
+    "d3": "3.3.8",
+    "chai": "1.8.1",
+    "sinon": "0.6.4",
+    "supervisor": "0.5.6",
+    "reload": "0.1.0"
+  },
+  "devDependencies": {
+    "supervisor": "~0.5.6",
+    "cookie-signature": "~1.0.1",
+    "buffer-crc32": "~0.2.1",
+    "methods": "~0.1.0",
+    "utile": "~0.2.0",
+    "log4js": "~0.6.9",
+    "restify": "~2.6.0",
+    "multiparty": "~3.0.0",
+    "raw-body": "0.0.3",
+    "uid2": "0.0.3"
+  }
 }

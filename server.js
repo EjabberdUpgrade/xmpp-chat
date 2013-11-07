@@ -27,8 +27,8 @@ var Workspace = require('./config/spark_config');
 var app = express(),
     proxy = new httpProxy.HttpProxy({
         target: {
-            host: 'localhost',
-            port: 5280          // Port of XMPP server
+            host: EjabHost,
+            port: EjabPort          // Port of XMPP server
         }
     });
 
@@ -73,6 +73,23 @@ app.post('/sign_in', function (req, res) {
     };
     res.redirect('/');
 });
+
+app.get('/online_status', function (req, res) {
+    if (req.session.user) {
+        res.redirect('/');
+    } else {
+        res.render('online_status');
+    }
+})
+
+app.get('/online_users', function (req, res) {
+    if (req.session.user) {
+        res.redirect('/');
+    } else {
+        res.render('online_users');
+    }
+})
+
 
 app.get('/sign_out', function (req, res) {
     delete req.session.user;

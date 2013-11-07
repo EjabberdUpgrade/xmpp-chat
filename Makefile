@@ -5,7 +5,7 @@ setup: logs
 	npm install
 
 start: logs
-	NODE_ENV=dev HTTP_PORT=8080 DEBUG=debug ./node_modules/.bin/supervisor DEBUG server.js
+	NODE_ENV=dev HTTP_PORT=8080 EJAB_HOST='localhost' EJAB_PORT=5280 DEBUG=debug ./node_modules/.bin/supervisor DEBUG server.js
 
 stop:
 	./node_modules/.bin/supervisor stop server.js

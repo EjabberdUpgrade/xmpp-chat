@@ -140,14 +140,14 @@ IM.Client.prototype._onRoster = function (stanza) {
     // Wrap message array again into an array,
     // otherwise jQuery will split it into separate arguments
     // when passed to 'bind' function
-    $.publish('roster.client.im', [message]);
+    $.publish('roster.client.im', message);
     return true;
 };
 
 IM.Client.prototype._onRosterChange = function (stanza) {
     var message = this._handleRosterStanza(stanza);
 
-    $.publish('rosterChange.client.im', [message]);
+    $.publish('rosterChange.client.im', message);
     return true;
 };
 

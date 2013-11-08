@@ -11,7 +11,7 @@ var IM = {};
 
 // constructor
 IM.Client = function (options) {
-    this.host = options.host || '/http-bind';
+    this.host = options.host || '/http-bind';  //the server already proxy it
     this.jid = options.jid;
     this.password = options.password;
     this.connection = new Strophe.Connection(this.host);
@@ -107,7 +107,7 @@ IM.Client.prototype._onPresenceChange = function (stanza) {
     this.jids[bareJid] = fullJid;
     // else
     // this.jids[bareJid] = bareJid;
-
+    console.log('presence.client.im' + message);
     $.publish('presence.client.im', message);
     return true;
 };
@@ -129,7 +129,7 @@ IM.Client.prototype._onMessage = function (stanza) {
 
     // Reset addressing
     this.jids[bareJid] = fullJid;
-
+    console.log('message.client.im' + message);
     $.publish('message.client.im', message);
     return true;
 };
@@ -140,14 +140,15 @@ IM.Client.prototype._onRoster = function (stanza) {
     // Wrap message array again into an array,
     // otherwise jQuery will split it into separate arguments
     // when passed to 'bind' function
-    $.publish('roster.client.im', message);
+    console.log('roster.client.im' + [message]);
+    $.publish('roster.client.im', [message]);
     return true;
 };
 
 IM.Client.prototype._onRosterChange = function (stanza) {
     var message = this._handleRosterStanza(stanza);
-
-    $.publish('rosterChange.client.im', message);
+    console.log('rosterChange.client.im' + [message]);
+    $.publish('rosterChange.client.im', [message]);
     return true;
 };
 

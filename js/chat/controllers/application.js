@@ -1,5 +1,5 @@
-;Chat.Controllers.Application = Ember.Object.extend({
-    debug: false,
+Chat.Controllers.Application = Ember.Object.extend({
+    debug: true,
 
     connect: function (options) {
         // TODO: raise an error if jid and password are not present

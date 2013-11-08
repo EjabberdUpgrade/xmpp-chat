@@ -1,5 +1,6 @@
 // Basic server to serve static assets from /public folder
 // with a proxy for XMPP server BOSH interface
+'use strict';
 
 var util = require('util'),
     express = require('express'),

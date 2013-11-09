@@ -172,6 +172,18 @@ IM.Client.prototype._handleRosterStanza = function (stanza) {
     }).get();
 };
 
+IM.Client.prototype._handleActivityStanza = function(stanza) {
+    var activity = $(stanza).find('activity');
+    return activity.map(function(index, item) {
+
+
+
+    }).get();
+
+
+
+};
+
 
 // public properties and methods
 IM.Client.prototype.connect = function () {
@@ -198,6 +210,16 @@ IM.Client.prototype.presence = function (status) {
     if (status) {
         stanza.attrs({type: status});
     }
+    this.send(stanza);
+};
+
+IM.Client.prototype.chat_message = function(to, thread_id, message) {
+    var fullJid = this.jids[to],
+        stanza = $msg({
+            to: fullJid,
+            type: 'chat'
+            }).c('body').t(message)
+            .c('thread').t(thread_id);
     this.send(stanza);
 };
 

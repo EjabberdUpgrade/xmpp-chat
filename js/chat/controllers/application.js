@@ -106,7 +106,14 @@ Chat.Controllers.Application = Ember.Object.extend({
     },
 
     sendMessage: function (message) {
-        this.client.message(message.get('to'), message.get('body'));
+        //this.client.message(message.get('to'), message.get('body'));
+        var thread_id = message.get('thread') || Math.round(Math.random()*100);
+        if( message.get('thread') != 'undefined' 
+            && 
+            message.get('thread') != '') {
+            thread_id = Strophe.getUniqueId(0);
+        };
+        this.client.chat_message(message.get('to'), message.get('thread'), message.get('body'));
     }
 });
 

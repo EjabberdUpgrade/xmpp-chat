@@ -6,8 +6,24 @@ var util = require('util'),
     express = require('express'),
     partials = require('express-partials'),
     httpProxy = require('http-proxy');
-
-
+/*
+var XMPPChatConfig = {
+    throwifundefined = function(ValNane, Val) {
+        if(Val === 'undefined') {
+            throw new Error('ValName cannot be ' + Val),
+        }
+    },
+    environment: process.env.NODE_ENV || 'undefined',
+    node_config: {
+        host: require('os').hostname() || 'undefined',
+        port: process.env.HTTP_PORT || 'undefined'
+    },
+    ejab_config: {
+        host: process.env.EJAB_HOST || 'undefined',
+        port: process.env.EJAB_PORT || 'undefined'
+    }
+};
+*/
 var Environment = process.env.NODE_ENV || 'undefined';
 var NodeHost = require('os').hostname() || 'undefined';
 var HttpPort = process.env.HTTP_PORT || 'undefined';
@@ -105,5 +121,5 @@ app.all('/http-bind', function(req, res) {
 });
 
 app.listen(9677); // XMPP
-util.puts("Server running at http://0.0.0.0:9677/ in " + app.set("env") + " mode.");
+util.puts("Server running at http://" + NodeHost +":"+ HttpPort +"/ in " + app.set("env") + " mode.");
 

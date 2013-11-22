@@ -120,6 +120,6 @@ app.all('/http-bind', function(req, res) {
     proxy.proxyRequest(req, res);
 });
 
-app.listen(9677); // XMPP
+app.listen(HttpPort); // XMPP
 util.puts("Server running at http://" + NodeHost +":"+ HttpPort +"/ in " + app.set("env") + " mode.");
 

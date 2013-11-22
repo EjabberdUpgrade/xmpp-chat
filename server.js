@@ -5,7 +5,9 @@
 var util = require('util'),
     express = require('express'),
     partials = require('express-partials'),
+    assert = require('assert'),
     httpProxy = require('http-proxy');
+ 
 /*
 var XMPPChatConfig = {
     throwifundefined = function(ValNane, Val) {
@@ -31,12 +33,11 @@ var EjabHost = process.env.EJAB_HOST || 'undefined';
 var EjabPort = process.env.EJAB_PORT || 'undefined'; 
 util.puts('Node Environment: ' + Environment + ' HttpPort: ' + HttpPort);
 
-
-if(Environment === 'undefined') throw new Error('Node_Env must be set');
-if(NodeHost === 'undefined') throw new Error('NodeHost must be set');
-if(HttpPort === 'undefined') throw new Error('HttpPort must be set');
-if(EjabHost === 'undefined') throw new Error('EjabHost must be set');
-if(EjabPort === 'undefined') throw new Error('EjabPort must be set');
+assert(Environment !== 'undefined', 'Node_Env must be set');
+assert(NodeHost !== 'undefined', 'NodeHost must be set');
+assert(HttpPort !== 'undefined', 'HttpPort must be set');
+assert(EjabHost !== 'undefined', 'EjabHost must be set');
+assert(EjabPort !== 'undefined', 'EjabPort must be set');
 
 
 var Workspace = require('./config/spark_config');

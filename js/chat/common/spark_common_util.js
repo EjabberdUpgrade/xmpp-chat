@@ -1,5 +1,5 @@
 'use strict';
-
+// warn_deprecate(function(..), "oldfunction", "newfunction") ...
 function warn_deprecate(callback, name, suggestion) {
   return function() {
     if( typeof console !== 'undefined' && 

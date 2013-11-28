@@ -20,6 +20,7 @@ IM.Client = function (options) {
     // TODO: move into a function
     // monitor all traffic in debug mode
     if (options.debug) {
+	Strophe.LogLevel = 0;
         this.connection.xmlInput = function (xml) {
             console.log('Incoming:');
             console.log(xml);
@@ -37,33 +38,46 @@ IM.Client.prototype._onConnect = function (status) {
 
     switch (status) {
     case Status.ERROR:
+   	console.log('Strophe status: Status.ERROR');
+
         $.publish('error.client.im');
         break;
     case Status.CONNECTING:
+   	console.log('Strophe status: Status.CONNECTING');
         $.publish('connecting.client.im');
         break;
     case Status.CONNFAIL:
+   	console.log('Strophe status: Status.CONNFAIL');
         $.publish('connfail.client.im');
         break;
-        case Status.AUTHENTICATING:
+   case Status.AUTHENTICATING:
+   	console.log('Strophe status: Status.AUTHENTICATING');
         $.publish('authenticating.client.im');
         break;
     case Status.AUTHFAIL:
+   	console.log('Strophe status: Status.AUTHFAIL');
         $.publish('authfail.client.im');
         break;
     case Status.CONNECTED:
+   	console.log('Strophe status: Status.CONNECTED');
         this._onConnected();
         $.publish('connected.client.im');
         break;
     case Status.DISCONNECTING:
+   	console.log('Strophe status: Status.DISCONNECTING');
         $.publish('diconnecting.client.im');
         break;
     case Status.DISCONNECTED:
+   	console.log('Strophe status: Status.DISCONNECTED');
         $.publish('diconnected.client.im');
         break;
     case Status.ATTACHED:
+   	console.log('Strophe status: Status.ATTACHED');
         $.publish('attached.client.im');
-        break;
+        break
+   default:
+   	console.log('Strophe status: Status.UNKNOWN');
+	break
     }
 
     return true;

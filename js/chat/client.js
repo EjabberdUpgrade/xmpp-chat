@@ -110,7 +110,7 @@ IM.Client.prototype._onPresenceChange = function (stanza) {
         bareJid = Strophe.getBareJidFromJid(fullJid),
         show = stanza.attr('type') === 'unavailable' ? 'offline' : 'online',
         message = {
-            from: fullJid,
+            from: bareJid,
             type: stanza.attr('type') || 'available',
             show: stanza.find('show').text() || show,
             status: stanza.find('status').text()
@@ -118,9 +118,14 @@ IM.Client.prototype._onPresenceChange = function (stanza) {
 
     // Reset addressing
     // if online
-    this.jids[bareJid] = fullJid;
+    this.jids[bareJid] = bareJid;
     // else
     // this.jids[bareJid] = bareJid;
+
+   console.log('onPresence: from fullJid: '+ fullJid);
+   console.log('onPresence: bareJid: ' + bareJid);
+   console.log('onPresnce: show: ' + show);	
+	
     console.log('presence.client.im' + message);
     $.publish('presence.client.im', message);
     return true;
@@ -136,13 +141,14 @@ IM.Client.prototype._onMessage = function (stanza) {
         activity = 'active',
         message = {
             id: stanza.attr('id'),
-            from: fullJid,
+            //from: fullJid,
+	   from: bareJid,
             body: body,
             activity: activity
         };
 
     // Reset addressing
-    this.jids[bareJid] = fullJid;
+    this.jids[bareJid] = bareJid;  //fullJid;
     console.log('message.client.im' + message);
     $.publish('message.client.im', message);
     return true;
@@ -177,10 +183,10 @@ IM.Client.prototype._handleRosterStanza = function (stanza) {
             bareJid = Strophe.getBareJidFromJid(fullJid);
 
         // Setup addressing
-        self.jids[bareJid] = fullJid;
+        self.jids[bareJid] = bareJid;
 
         return {
-            jid: fullJid,
+            jid: bareJid,
             subscription: item.attr('subscription')
         };
     }).get();
@@ -206,6 +212,7 @@ IM.Client.prototype.connect = function () {
 };
 
 IM.Client.prototype.disconnect = function () {
+    this.
     this.connection.flush();
     this.connection.disconnect();
     $.publish('disconnected.client.im');
@@ -228,9 +235,10 @@ IM.Client.prototype.presence = function (status) {
 };
 
 IM.Client.prototype.chat_message = function(to, thread_id, message) {
-    var fullJid = this.jids[to],
+    //var fullJid = this.jids[to],
+    var bareJid = Strophe.getBareJidFromJid(this.Jids[to]), 
         stanza = $msg({
-            to: fullJid,
+            to: bareJid,
             type: 'chat'
             }).c('body').t(message)
             .c('thread').t(thread_id);
@@ -238,9 +246,10 @@ IM.Client.prototype.chat_message = function(to, thread_id, message) {
 };
 
 IM.Client.prototype.message = function (to, message) {
-    var fullJid = this.jids[to],
-        stanza = $msg({
-            to: fullJid,
+   // var fullJid = this.jids[to],
+    var bareJid = Strophe.getBareJidFromJid(this.Jids[to]),     
+	   stanza = $msg({
+            to: bareJid,
             type: 'chat'
         }).c('body').t(message);
     this.send(stanza);
